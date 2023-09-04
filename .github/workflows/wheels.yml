@@ -34,8 +34,10 @@ jobs:
           wget -qO- https://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo tee /etc/apt/trusted.gpg.d/lunarg.asc
           sudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-jammy.list http://packages.lunarg.com/vulkan/lunarg-vulkan-jammy.list
           sudo apt-get update
-          sudo apt-get install -y cmake build-essential vulkan-sdk
+          sudo apt-get install -y cmake build-essential vulkan-sdk vulkan-tools
+
           pip install setuptools wheel cmake --upgrade
+
       - name: Build C library
         run: |
           git submodule init
@@ -45,6 +47,7 @@ jobs:
           cd build
           cmake ..
           cmake --build . --parallel
+
       - name: Build wheel
         run: |
             cd gpt4all-bindings/python/

@@ -20,19 +20,19 @@ jobs:
         with:
           repository: nomic-ai/gpt4all
 
-      # - uses: actions/setup-python@v3
+      - uses: actions/setup-python@v3
 
       # - name: Install cibuildwheel
       #   run: python -m pip install cibuildwheel==2.15.0
 
-      # - run:
-      #   name: Install dependencies
-      #   script: |
-      #     wget -qO- https://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo tee /etc/apt/trusted.gpg.d/lunarg.asc
-      #     sudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-jammy.list http://packages.lunarg.com/vulkan/lunarg-vulkan-jammy.list
-      #     sudo apt-get update
-      #     sudo apt-get install -y cmake build-essential vulkan-sdk
-      #     pip install setuptools wheel cmake
+      - run:
+        name: Install dependencies
+        script: |
+          wget -qO- https://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo tee /etc/apt/trusted.gpg.d/lunarg.asc
+          sudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-jammy.list http://packages.lunarg.com/vulkan/lunarg-vulkan-jammy.list
+          sudo apt-get update
+          sudo apt-get install -y cmake build-essential vulkan-sdk
+          pip install setuptools wheel cmake
       # - run:
       #   name: Build C library
       #   script: |

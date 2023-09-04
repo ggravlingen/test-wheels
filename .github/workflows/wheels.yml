@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         os:
-          - ubuntu-2204
+          - ubuntu-latest
           # - macOS-12
           # - macOS-13
 
@@ -35,7 +35,7 @@ jobs:
           sudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-jammy.list http://packages.lunarg.com/vulkan/lunarg-vulkan-jammy.list
           sudo apt-get update
           sudo apt-get install -y cmake build-essential vulkan-sdk
-          pip install setuptools wheel cmake
+          pip install setuptools wheel cmake --upgrade
       # - run:
       #   name: Build C library
       #   script: |

@@ -25,28 +25,28 @@ jobs:
         run: python -m pip install cibuildwheel==2.15.0
 
       - run:
-          name: Install dependencies
-          command: |
-            wget -qO- https://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo tee /etc/apt/trusted.gpg.d/lunarg.asc
-            sudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-jammy.list http://packages.lunarg.com/vulkan/lunarg-vulkan-jammy.list
-            sudo apt-get update
-            sudo apt-get install -y cmake build-essential vulkan-sdk
-            pip install setuptools wheel cmake
+        name: Install dependencies
+        script: |
+          wget -qO- https://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo tee /etc/apt/trusted.gpg.d/lunarg.asc
+          sudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-jammy.list http://packages.lunarg.com/vulkan/lunarg-vulkan-jammy.list
+          sudo apt-get update
+          sudo apt-get install -y cmake build-essential vulkan-sdk
+          pip install setuptools wheel cmake
       - run:
-          name: Build C library
-          command: |
-            git submodule init
-            git submodule update
-            cd gpt4all-backend
-            mkdir build
-            cd build
-            cmake ..
-            cmake --build . --parallel
+        name: Build C library
+        script: |
+          git submodule init
+          git submodule update
+          cd gpt4all-backend
+          mkdir build
+          cd build
+          cmake ..
+          cmake --build . --parallel
       - run:
-          name: Build wheel
-          command: |
-              cd gpt4all-bindings/python/
-              python setup.py bdist_wheel --plat-name=manylinux1_x86_64
+        name: Build wheel
+        script: |
+            cd gpt4all-bindings/python/
+            python setup.py bdist_wheel --plat-name=manylinux1_x86_64
 
       - uses: actions/upload-artifact@v3
         with:

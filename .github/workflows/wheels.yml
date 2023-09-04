@@ -2,7 +2,7 @@ name: Build
 
 on:
   - push
-  - pull_request
+  # - pull_request
 
 jobs:
   build_wheels:
@@ -12,13 +12,13 @@ jobs:
       matrix:
         os:
           - ubuntu-20.04
-          - macOS-12
-          - macOS-13
+          # - macOS-12
+          # - macOS-13
 
     steps:
       - uses: actions/checkout@v3
         with:
-          repository: git@github.com:nomic-ai/gpt4all.git
+          repository: nomic-ai/gpt4all
 
       # - uses: actions/setup-python@v3
 

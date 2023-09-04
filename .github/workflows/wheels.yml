@@ -36,21 +36,19 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y cmake build-essential vulkan-sdk
           pip install setuptools wheel cmake --upgrade
-      # - run:
-      #   name: Build C library
-      #   script: |
-      #     git submodule init
-      #     git submodule update
-      #     cd gpt4all-backend
-      #     mkdir build
-      #     cd build
-      #     cmake ..
-      #     cmake --build . --parallel
-      # - run:
-      #   name: Build wheel
-      #   script: |
-      #       cd gpt4all-bindings/python/
-      #       python setup.py bdist_wheel --plat-name=manylinux1_x86_64
+      - name: Build C library
+        run: |
+          git submodule init
+          git submodule update
+          cd gpt4all-backend
+          mkdir build
+          cd build
+          cmake ..
+          cmake --build . --parallel
+      - name: Build wheel
+        run: |
+            cd gpt4all-bindings/python/
+            python setup.py bdist_wheel --plat-name=manylinux1_x86_64
 
       # - uses: actions/upload-artifact@v3
       #   with:

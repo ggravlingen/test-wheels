@@ -16,7 +16,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-        repository: git@github.com:nomic-ai/gpt4all.git
+        with:
+          repository: git@github.com:nomic-ai/gpt4all.git
 
       - uses: actions/setup-python@v3
 
